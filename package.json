@@ -49,8 +49,8 @@
     }
   },
   "dependencies": {
-    "axios": "^0.21.1",
     "dotenv": "^9.0.0",
+    "html-creator": "^0.4.4",
     "node-schedule": "^2.0.0",
     "toggl-api": "^1.0.1"
   }

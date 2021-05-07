@@ -1,6 +1,6 @@
 # Remote Standup
 
-Are you sick of having to hand-draft a daily remote standup email? This tool integrates Toggl Time Tracking with Gmail email drafts so you can automate your worries away.
+Are you sick of having to hand-draft a daily remote standup email? This tool integrates Toggl Time Tracking and generates an HTML file that can be copied and pasted into your email client so you can automate your worries away.
 
 ## Setup
 

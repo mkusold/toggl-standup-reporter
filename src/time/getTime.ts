@@ -1,5 +1,5 @@
 import TogglClient from 'toggl-api';
-import { formatDate } from './utils';
+import { getPreviousDate } from './utils';
 
 interface DetailedReport {
     total_billable: number;
@@ -29,20 +29,14 @@ interface DetailedReport {
     }>
 }
 
-interface Work {
+export interface Work {
+    start: Date
     description: string;
     project?: string;
 }
 
-function getYesterday(){
-    const today = new Date()
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1)
-    return formatDate(yesterday);
-}
-
 export async function getYesterdaysWorkSummary(){
-    const yesterdayFormatted = getYesterday();
+    const yesterdayFormatted = getPreviousDate(1);
 
     const QUERY_PARAMS = {
         workspace_id: process.env.TOGGL_WORKSPACE_ID,
@@ -65,8 +59,9 @@ export async function getYesterdaysWorkSummary(){
                 }
             })
         });
-        const reportedWork: Array<Work> = result.data && result.data.length ? result.data.map(({description, project}) => {
+        const reportedWork: Array<Work> = result.data && result.data.length ? result.data.map(({description, project, start}) => {
             return {
+                start,
                 description,
                 project,
             }
